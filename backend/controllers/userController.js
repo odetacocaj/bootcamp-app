@@ -3,7 +3,8 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const sendToken = require("../utils/JsonWebToken");
 const emailSender=require('../utils/emailSender');
-const crypto=require('crypto')
+const crypto=require('crypto');
+const { send } = require("process");
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -108,4 +109,117 @@ exports.resetPassword=catchAsyncErrors(async(req,res,next)=>{
 
      sendToken(user,200,res)
 
+})
+
+exports.getMe=catchAsyncErrors(async(req,res,next)=>{
+    const user= await User.findById(req.user.id)
+
+    res.status(200).json({
+        success:true,
+        user
+    })
+})
+
+exports.changePassword=catchAsyncErrors(async(req,res,next)=>{
+    
+    const user= await User.findById(req.user.id).select('+password');
+    const verifyOldPassword=await user.comparePassword(req.body.oldPassword)
+    if(!verifyOldPassword){
+        return next(new ErrorHandler('Incorrect password',400));
+
+    }
+    user.password=req.body.password;
+    await user.save();
+
+    sendToken(user,200,res)
+})
+
+exports.updateUserData = catchAsyncErrors(async (req, res, next) => {
+    const newData = {
+        name: req.body.name,
+        email: req.body.email
+    }
+
+    // if (req.body.avatar !== '') {
+    //     const user = await User.findById(req.user.id)
+
+    //     const image_id = user.avatar.public_id;
+    //     const res = await cloudinary.v2.uploader.destroy(image_id);
+
+    //     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    //         folder: 'avatars',
+    //         width: 150,
+    //         crop: "scale"
+    //     })
+
+    //     newData.avatar = {
+    //         public_id: result.public_id,
+    //         url: result.secure_url
+    //     }
+    // }
+
+    const user = await User.findByIdAndUpdate(req.user.id, newData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true
+    })
+})
+
+// Access vetem per Admin
+
+exports.allUsers=catchAsyncErrors(async (req, res, next) => {
+    const users=await User.find();
+
+    res.status(200).json({
+        success:true,
+        users
+    })
+})
+
+
+exports.getUserData=catchAsyncErrors(async (req, res, next) => {
+    const user=await User.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHandler(`User does not exist!`))
+    }
+
+    res.status(200).json({
+        success:true,
+        user
+    })
+})
+
+exports.updateUserDataAdmin = catchAsyncErrors(async (req, res, next) => {
+    const newData = {
+        name: req.body.name,
+        email: req.body.email,
+        role:req.body.role
+    }
+    const user = await User.findByIdAndUpdate(req.params.id, newData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true
+    })
+})
+
+exports.deleteUser=catchAsyncErrors(async (req, res, next) => {
+    const user=await User.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHandler(`User does not exist!`))
+    }
+
+    await user.remove();
+
+    res.status(200).json({
+        success:true,
+        user
+    })
 })
