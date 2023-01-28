@@ -31,19 +31,19 @@ module.exports = (err, req, res, next) => {
             error = new ErrorHandler(message, 400)
         }
 
-        // Handling Mongoose duplicate key errors
+       
         if (err.code === 11000) {
-            const message = `Duplicate ${Object.keys(err.keyValue)} entered`
+            const message = `${Object.keys(err.keyValue)} is already registered!`
             error = new ErrorHandler(message, 400)
         }
 
-        // Handling wrong JWT error
+      
         if (err.name === 'JsonWebTokenError') {
             const message = 'Invalid Token'
             error = new ErrorHandler(message, 400)
         }
 
-        // Handling Expired JWT error
+       
         if (err.name === 'TokenExpiredError') {
             const message = 'Expired Token'
             error = new ErrorHandler(message, 400)
