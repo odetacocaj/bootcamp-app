@@ -52,7 +52,7 @@ nav {
 
 #login_btn,
 #view_btn {
-  background-color:#141850;
+  background-color:#141850 !important;
   color:white;
   padding: 0.4rem 1.8rem;
   font-family: calibri;
@@ -304,24 +304,27 @@ footer {
   justify-content: center;
   align-items: center;
   margin-top: 5rem;
-
+  font-family: 'Montserrat';
   font-weight: 700;
+  
 }
 
 .wrapper form {
   padding: 2.5rem 3rem;
+  background-color: #fae5df;
+  border-radius: 15px;
 }
 
 .wrapper form .btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #141850;
+  border-color: #141850;
   color: white;
   margin-top: 2.5rem;
 }
 
 .wrapper form a {
   font-size: 0.9rem;
-  color: grey;
+  color: #303179
 }
 
 /* Avatar */
