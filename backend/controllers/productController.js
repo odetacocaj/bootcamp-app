@@ -12,18 +12,24 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const resultsPerPage = 4;
+  
+  const resultsPerPage = 10;
   const prdCount = await Product.countDocuments();
   const apiFeatures = new APIFeatures(Product.find(), req.query)
     .search()
     .filter()
     .pagination(resultsPerPage);
   const products = await apiFeatures.query;
-  res.status(200).json({
-    success: true,
-    prdCount,
-    products,
-  });
+
+  
+    res.status(200).json({
+      success: true,
+      prdCount,
+      products,
+    });
+
+
+ 
 });
 
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
