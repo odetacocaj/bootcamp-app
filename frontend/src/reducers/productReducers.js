@@ -20,6 +20,7 @@ import {
           loading: false,
           products: action.payload.products,
           prdCount: action.payload.prdCount,
+          resultsPerPage:action.payload.resultsPerPage
           
         };
    
