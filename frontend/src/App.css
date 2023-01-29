@@ -620,3 +620,9 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+

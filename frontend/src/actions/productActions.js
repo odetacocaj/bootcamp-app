@@ -36,7 +36,7 @@ import {
         dispatch({ type: SINGLE_PRODUCT_REQUEST })
 
         const { data } = await axios.get(`/api/v1/product/${id}`)
-        console.log(data.product)
+        
 
         dispatch({
             type: SINGLE_PRODUCT_SUCCESS,

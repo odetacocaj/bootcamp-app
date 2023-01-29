@@ -40,17 +40,20 @@ import {
     }
   };
 
-  export const productReducer = (state = { products:{} }, action) => {
+  export const productReducer = (state = { product:{} }, action) => {
    
     switch(action.type){
       case SINGLE_PRODUCT_REQUEST:
         return{
           ...state,
-          laoding:true
+          loading:true
 
         }
         case SINGLE_PRODUCT_SUCCESS:
+        // console.log(action)
+        // console.log(state)
         return{
+          ...state,
           loading:false,
           product:action.payload
 
