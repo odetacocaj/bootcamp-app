@@ -15,6 +15,7 @@ import UpdateProfile from './components/user/UpdateProfile';
 import ChangePassword from './components/user/ChangePassword';
 import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
+import Cart from './components/cart/Cart'
 function App() {
 
   useEffect(()=>{
@@ -28,11 +29,13 @@ function App() {
           <Routes> 
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+
+            <Route path="/cart" element={<Cart/>}></Route>
             <Route path="/search/:keyword" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path='/password/forgot' element={<ForgotPassword/>}/>
-            <Route path='/password/reset/:token'  component={NewPassword} exact/>
+            <Route path='/password/reset/:token'  element={<NewPassword/>}/>
             <Route path="/getMe" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/getMe/update" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>} />
             <Route path="/password/change" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
