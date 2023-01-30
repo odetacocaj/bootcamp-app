@@ -15,7 +15,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     crop:"scale"
   })
   const { name, email, password } = req.body;
-  console.log(req.body)
+  
   const user = await User.create({
     name,
     email,
@@ -61,18 +61,18 @@ exports.forgotPassword=catchAsyncErrors(async(req,res,next)=>{
     await user.save({ validateBeforeSave: false });
     
 
-    const resetURL=`${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+    const resetURL=`${process.env.FRONTEND_URL}/api/v1/password/reset/${resetToken}`;
 
-    const msg=`Your pasword reset token below: \n\n${resetURL}\n\n.If this is not per your request, please ignore this email.`
+    const message=`Your pasword reset token below: \n\n${resetURL}\n\n.If this is not per your request, please ignore this email.`
     try{
         await emailSender({
             email:user.email,
             subject:'Password reset request',
-            msg
+            message
         })
         res.status(200).json({
             status:true,
-            msg:`Email sent successfully to: ${user.email}`
+            message:`Email sent successfully to: ${user.email}`
         })
     }catch(error){
         user.resetPasswordToken=undefined;
@@ -148,23 +148,23 @@ exports.updateUserData = catchAsyncErrors(async (req, res, next) => {
         email: req.body.email
     }
 
-    // if (req.body.avatar !== '') {
-    //     const user = await User.findById(req.user.id)
+    if (req.body.avatar !== '') {
+        const user = await User.findById(req.user.id)
 
-    //     const image_id = user.avatar.public_id;
-    //     const res = await cloudinary.v2.uploader.destroy(image_id);
+        const image_id = user.avatar.public_id;
+        const res = await cloudinary.v2.uploader.destroy(image_id);
 
-    //     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    //         folder: 'avatars',
-    //         width: 150,
-    //         crop: "scale"
-    //     })
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: "scale"
+        })
 
-    //     newData.avatar = {
-    //         public_id: result.public_id,
-    //         url: result.secure_url
-    //     }
-    // }
+        newData.avatar = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
 
     const user = await User.findByIdAndUpdate(req.user.id, newData, {
         new: true,

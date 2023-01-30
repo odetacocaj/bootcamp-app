@@ -6,11 +6,13 @@ import {
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {productsReducer,productReducer} from './reducers/productReducers'
-import {authReducer} from './reducers/userReducers'
+import {authReducer,userReducer,forgotPasswordReducer} from './reducers/userReducers'
 const reducer=combineReducers({
     products:productsReducer,
     productDetails:productReducer,
-    auth:authReducer
+    auth:authReducer,
+    user:userReducer,
+    forgotPassword:forgotPasswordReducer
 })
 
 let initialState={}

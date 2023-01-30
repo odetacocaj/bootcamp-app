@@ -15,7 +15,7 @@ const emailSender = async options => {
         from: `${process.env.SMTP_FROM} <${process.env.SMTP_PROVIDER}>`,
         to: options.email,
         subject: options.subject,
-        text: options.msg
+        text: options.message
     }
 
     await transporter.sendMail(message)

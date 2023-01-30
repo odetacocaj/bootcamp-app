@@ -8,7 +8,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   console.log(token);
 
   if (!token) {
-    return next(new ErrorHandler("You must be logged in to gain access.", 401));
+    return next(new ErrorHandler("You must login to gain access!", 401));
   }
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
