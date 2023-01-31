@@ -28,8 +28,8 @@ function NewPassword({history}) {
         alert.success('Pasword has been updated successfully!');
         navigate('/login')
       }
-      console.log("Hello kto jane" +params.token)
-    }, [dispatch, alert, error,success,history]);
+      // console.log(">>>" +params.token)
+    }, [dispatch, alert, error,success,navigate]);
   
     const submitHandler = (e) => {
       e.preventDefault();

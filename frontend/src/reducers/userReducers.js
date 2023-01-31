@@ -132,8 +132,8 @@ export const forgotPasswordReducer=(state={},action)=>{
          
         case FORGOT_PASSWORD_REQUEST:
         case NEW_PASSWORD_REQUEST:
-            console.log(action)
-        console.log(state)
+        //     console.log(action)
+        // console.log(state)
             return{
                 
                 ...state,
@@ -148,8 +148,8 @@ export const forgotPasswordReducer=(state={},action)=>{
             }
 
             case NEW_PASSWORD_SUCCESS:
-                console.log(action)
-        console.log(state)
+        //         console.log(action)
+        // console.log(state)
                 return{
                     ...state,
                     // loading: false,
@@ -158,8 +158,8 @@ export const forgotPasswordReducer=(state={},action)=>{
            
             case FORGOT_PASSWORD_FAIL:
             case NEW_PASSWORD_FAIL:
-                console.log(action)
-        console.log(state)
+        //         console.log(action)
+        // console.log(state)
                 return{
                 ...state,
                 loading:false,

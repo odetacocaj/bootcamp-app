@@ -5,26 +5,31 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../layout/Loading";
 import MetaData from "../layout/MetaData";
 import { login, clearErrors } from "../../actions/userActions";
-
-function Login() {
+import { useLocation } from "react-router-dom";
+function Login({history}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const alert = useAlert();
   const dispatch = useDispatch();
+  let location=useLocation();
 
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
   );
+
+  const redirect = location.search ? `/${location.search.split('=')[1]}` : '/'
   const navigate = useNavigate();
   useEffect(() => {
+    // console.log(`redirect is ${redirect}`)
     if (isAuthenticated) {
-      navigate("/");
+      
+      navigate(`${redirect}`);
     }
     if (error) {
       alert.error(error);
       dispatch(clearErrors);
     }
-  }, [dispatch, alert, isAuthenticated, error]);
+  }, [dispatch, alert, isAuthenticated, error,navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();

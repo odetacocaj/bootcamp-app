@@ -41,7 +41,7 @@ function Home() {
   );
 
   const keyword= params.keyword;
-  console.log(keyword)
+  // console.log(keyword)
   useEffect(() => {
     if (error) {
       return alert.error(error);

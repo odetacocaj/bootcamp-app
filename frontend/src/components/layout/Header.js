@@ -4,17 +4,17 @@ import "../../App.css";
 import Search from "./Search";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import {logout} from '../../actions/userActions'
+import { logout } from "../../actions/userActions";
 
 function Header() {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const logoutHandler=()=>{
+  const logoutHandler = () => {
     dispatch(logout());
-    alert.success('Successfully logged out!')
-  }
+    alert.success("Successfully logged out!");
+  };
   const { user, loading } = useSelector((state) => state.auth);
-  const {cartItems}=useSelector(state=>state.cart)
+  const { cartItems } = useSelector((state) => state.cart);
   return (
     <Fragment>
       <nav className="navbar row">
@@ -74,17 +74,22 @@ function Header() {
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
-                {user && user.role !== "admin" ? (
-                  <Link className="dropdown-item" to="/orders/getMyOrders">
-                    My Orders
-                  </Link>
-                ) : (
+                {user && user.role == "admin" && (
                   <Link className="dropdown-item" to="/dashboard">
                     Dashboard
                   </Link>
                 )}
-                 <Link className="dropdown-item" to='/getMe'>Profile</Link>
-                <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>
+                <Link className="dropdown-item" to="/orders/getMyOrders">
+                  My Orders
+                </Link>
+                <Link className="dropdown-item" to="/getMe">
+                  Profile
+                </Link>
+                <Link
+                  className="dropdown-item text-danger"
+                  to="/"
+                  onClick={logoutHandler}
+                >
                   Logout
                 </Link>
               </div>
