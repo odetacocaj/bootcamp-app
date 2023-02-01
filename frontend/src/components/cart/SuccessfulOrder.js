@@ -16,7 +16,7 @@ function SuccessfulOrder() {
                 <h3>Thank you!</h3>
                 <hr/>
 
-                <Link to="/order/getMyOrders">Go to Orders</Link>
+                <Link to="/orders/getMyOrders">Go to Orders</Link>
             </div>
 
         </div>

@@ -19,10 +19,12 @@ import Cart from './components/cart/Cart'
 import Shipping from './components/cart/Shipping';
 import OrderConfirmation from './components/cart/OrderConfirmation';
 import Payment from './components/cart/Payment';
+import OrdersList from './components/order/OrdersList';
 import axios from 'axios';
 import { loadStripe} from '@stripe/stripe-js';
 import { Elements} from '@stripe/react-stripe-js';
 import SuccessfulOrder from './components/cart/SuccessfulOrder';
+import OrderDetails from './components/order/OrderDetails';
 function App() {
 
   const[stripeApiKey,setStripeApiKey]=useState('');
@@ -65,6 +67,8 @@ function App() {
 
 
             <Route path="/success" element={<ProtectedRoute><SuccessfulOrder /></ProtectedRoute>} />
+            <Route path="/orders/getMyOrders" element={<ProtectedRoute><OrdersList /></ProtectedRoute>} />
+            <Route path="/order/:id" element={<ProtectedRoute><OrderDetails /></ProtectedRoute>} />
             <Route path="/shipping" element={<ProtectedRoute><Shipping /></ProtectedRoute>} />
             <Route path="/order/confirm" element={<ProtectedRoute><OrderConfirmation /></ProtectedRoute>} />
             <Route path="/getMe" element={<ProtectedRoute><Profile /></ProtectedRoute>} />

@@ -44,11 +44,11 @@ exports.getOrderDetails=catchAsyncErrors(async(req,res,next)=>{
 })
 
 exports.getMyOrders=catchAsyncErrors(async(req,res,next)=>{
-    const myOrders=await Order.find({user:req.user.id})
+    const orders=await Order.find({user:req.user.id})
       
     res.status(200).json({
         success:true,
-        myOrders
+        orders
     })
 })
 
