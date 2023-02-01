@@ -85,12 +85,17 @@ exports.addReview = catchAsyncErrors(async (req, res, next) => {
     comment,
   };
 
+  //  console.log('>>>>' + (req.user._id).toString())
+
+  
+   
   const product = await Product.findById(productId);
   const hasReview = product.reviews.find(
     (r) => r.user.toString() === req.user._id.toString()
   );
 
   if (hasReview) {
+    
     product.reviews.forEach((review) => {
       if (review.user.toString() === req.user._id.toString()) {
         review.comment = comment;
@@ -98,6 +103,7 @@ exports.addReview = catchAsyncErrors(async (req, res, next) => {
       }
     });
   } else {
+    console.log('Odetaa '+ review.user.toString())
     product.reviews.push(review);
     product.numberOfReviews = product.reviews.length;
   }

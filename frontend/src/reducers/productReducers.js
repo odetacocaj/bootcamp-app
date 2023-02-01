@@ -79,7 +79,7 @@ import {
     }
   }
 
-  export const newReviewReducer = (state = {  }, action) => {
+  export const newReviewReducer = (state = {}, action) => {
    
     switch(action.type){
       case NEW_REVIEW_REQUEST:
@@ -92,7 +92,7 @@ import {
         // console.log(action)
         // console.log(state)
         return{
-          ...state,
+          // ...state,
           loading:false,
           success:action.payload
 
