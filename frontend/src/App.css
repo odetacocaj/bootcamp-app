@@ -507,8 +507,9 @@ footer {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #232f3e;
+  background: #f5cac2;
   color: #fff;
+  font-weight: bolder;
   transition: all 0.3s;
 }
 #sidebar.active {
@@ -517,11 +518,11 @@ footer {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #232f3e;
+  background: #f5cac2
 }
 #sidebar ul.components {
   padding: 5px 0px;
-  border-bottom: 1px solid #232f3e;
+  border-bottom: 1px solid #141850;
 }
 
 #sidebar ul li a {
@@ -532,7 +533,7 @@ footer {
   text-decoration: none;
 }
 #sidebar ul li a:hover {
-  color: #232f3e;
+  color: #141850;
   background: #fff;
 }
 
@@ -559,7 +560,7 @@ a[data-toggle='collapse'] {
 ul ul a {
   font-size: 1rem !important;
   padding-left: 30px !important;
-  background: #232f3e;
+  background: #141850;
 }
 
 ul.CTAs {

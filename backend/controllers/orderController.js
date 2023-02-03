@@ -56,17 +56,17 @@ exports.getMyOrders=catchAsyncErrors(async(req,res,next)=>{
 // Routes ku vetem Admini ka qasje
 
 exports.getAllOrders=catchAsyncErrors(async(req,res,next)=>{
-    const allOrders=await Order.find();
+    const orders=await Order.find();
 
-    let totalOrdersAmount=0;
-    allOrders.forEach(order=>{
-        totalOrdersAmount+=order.totalPrice
+    let totalAmount=0;
+    orders.forEach(order=>{
+        totalAmount+=order.totalPrice
     })
       
     res.status(200).json({
         success:true,
-        totalOrdersAmount,
-        allOrders
+        totalAmount,
+        orders
     })
 })
 

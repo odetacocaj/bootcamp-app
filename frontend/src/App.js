@@ -25,6 +25,16 @@ import { loadStripe} from '@stripe/stripe-js';
 import { Elements} from '@stripe/react-stripe-js';
 import SuccessfulOrder from './components/cart/SuccessfulOrder';
 import OrderDetails from './components/order/OrderDetails';
+
+// Admin Only
+import AllOrdersList from './components/admin/AllOrdersList';
+import CreateProduct from './components/admin/CreateProduct';
+import UpdateProduct from './components/admin/UpdateProduct';
+import Dashboard from './components/admin/Dashboard';
+import ProductsList from './components/admin/ProductsList';
+import ProcessOrder from './components/admin/ProcessOrder';
+import UsersList from './components/admin/UsersList';
+import UpdateUser from './components/admin/UpdateUser';
 function App() {
 
   const[stripeApiKey,setStripeApiKey]=useState('');
@@ -74,8 +84,21 @@ function App() {
             <Route path="/getMe" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/getMe/update" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>} />
             <Route path="/password/change" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
+
+            
           </Routes>
         </div>
+        <Routes>
+        <Route path="/dashboard" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>} />
+        <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductsList /></ProtectedRoute>} />
+        <Route path="/admin/product/new" element={<ProtectedRoute isAdmin={true}><CreateProduct /></ProtectedRoute>} />
+        <Route path="/admin/product/:id" element={<ProtectedRoute isAdmin={true}><UpdateProduct /></ProtectedRoute>} />
+        <Route path="/admin/getAllOrders" element={<ProtectedRoute isAdmin={true}><AllOrdersList /></ProtectedRoute>} />
+        <Route path="/admin/order/:id" element={<ProtectedRoute isAdmin={true}><ProcessOrder /></ProtectedRoute>} />
+        <Route path="/admin/users" element={<ProtectedRoute isAdmin={true}><UsersList /></ProtectedRoute>} />
+        <Route path="/admin/userData/:id" element={<ProtectedRoute isAdmin={true}><UpdateUser /></ProtectedRoute>} />
+        </Routes>
+       
         <Footer />
       </div>
     </BrowserRouter>
