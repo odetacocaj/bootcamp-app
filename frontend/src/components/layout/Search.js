@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 
-function Search({history}) {
+function Search() {
     const [keyword,setKeyword]=useState('')
     const navigate = useNavigate();
     const searchHandler=(e)=>{

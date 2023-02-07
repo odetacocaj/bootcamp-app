@@ -6,7 +6,7 @@ import { resetPassword, clearErrors } from "../../actions/userActions";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function NewPassword({history}) {
+function NewPassword() {
     const params=useParams();
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

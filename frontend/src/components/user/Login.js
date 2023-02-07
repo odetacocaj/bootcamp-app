@@ -6,7 +6,7 @@ import Loading from "../layout/Loading";
 import MetaData from "../layout/MetaData";
 import { login, clearErrors } from "../../actions/userActions";
 import { useLocation } from "react-router-dom";
-function Login({history}) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const alert = useAlert();

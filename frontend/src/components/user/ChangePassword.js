@@ -6,7 +6,7 @@ import MetaData from "../layout/MetaData";
 import { changePassword, clearErrors } from "../../actions/userActions";
 import { UPDATE_PASSWORD_RESET } from "../../lib/constants/userConstants";
 
-function ChangePassword({ history }) {
+function ChangePassword() {
   const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,7 +31,7 @@ function ChangePassword({ history }) {
         type: UPDATE_PASSWORD_RESET,
       });
     }
-  }, [dispatch, alert, error, history, isUpdated]);
+  }, [dispatch, alert, error, isUpdated]);
 
   const submitHandler = (e) => {
     e.preventDefault();
